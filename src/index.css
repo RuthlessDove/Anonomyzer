@@ -1,0 +1,168 @@
+:root {
+  --bg: #f7f7f5;
+  --card: #ffffff;
+  --text: #1d1d1b;
+  --muted: #6b6b66;
+  --border: #e2e1dc;
+  --accent: #2f5bd3;
+  --danger: #c0392b;
+  --warn-bg: #fff6e0;
+  --error-bg: #fde8e6;
+  --e-person: #ffd7d7;
+  --e-org: #d9e7ff;
+  --e-location: #d6f5e3;
+  --e-uni: #e6dcff;
+  --e-course: #ffe9c7;
+  --e-id: #ffe0f0;
+  --e-date: #d8f3f6;
+  --e-contact: #eaeaea;
+  --e-custom: #f0f3c4;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161615;
+    --card: #1f1f1d;
+    --text: #ecebe6;
+    --muted: #9a9993;
+    --border: #34332f;
+    --accent: #7c9cf2;
+    --danger: #f07a6c;
+    --warn-bg: #3b3017;
+    --error-bg: #42201c;
+    --e-person: #5c2a2a;
+    --e-org: #24365c;
+    --e-location: #1f4a33;
+    --e-uni: #3d2f63;
+    --e-course: #5a4320;
+    --e-id: #5a2944;
+    --e-date: #1f4b50;
+    --e-contact: #3a3a38;
+    --e-custom: #4a4c1f;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.5 system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+main { max-width: 960px; margin: 0 auto; padding: 24px 16px 64px; }
+
+h1 { margin: 0; font-size: 1.6rem; }
+h2 { margin: 0 0 4px; font-size: 1.1rem; }
+p { margin: 4px 0 12px; }
+.muted { color: var(--muted); }
+
+.top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 16px; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+textarea, .review, .output {
+  width: 100%;
+  font: 14px/1.6 ui-monospace, 'SF Mono', Menlo, monospace;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+}
+textarea { resize: vertical; }
+.review, .output { white-space: pre-wrap; word-break: break-word; min-height: 4em; margin: 0; }
+.review { line-height: 2; }
+
+button {
+  font: inherit;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+}
+button:disabled, .button-like.disabled { opacity: 0.5; cursor: default; }
+.button-like {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.heading-row { margin: 0 0 8px; }
+button.ghost { background: transparent; color: var(--text); border-color: var(--border); }
+button.danger { background: transparent; color: var(--danger); border-color: var(--danger); white-space: nowrap; }
+
+.chip {
+  font-size: 12px;
+  padding: 2px 8px;
+  margin: 2px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+}
+
+.row { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 12px 0 8px; flex-wrap: wrap; }
+.lists { margin-top: 10px; display: grid; gap: 6px; }
+.mask-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin-bottom: 8px; padding: 8px; border: 1px dashed var(--accent); border-radius: 8px; }
+.warn, .error { padding: 8px 12px; border-radius: 6px; font-size: 13px; }
+.warn { background: var(--warn-bg); }
+.error { background: var(--error-bg); }
+
+.tag-input {
+  font: 13px ui-monospace, 'SF Mono', Menlo, monospace;
+  width: 11em;
+  padding: 3px 8px;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+table.terms { width: 100%; margin: 0; }
+table.terms th { text-align: left; font-weight: 500; font-size: 12px; color: var(--muted); padding: 0 12px 4px 0; }
+table.terms button { padding: 1px 8px; }
+
+details { margin-top: 12px; }
+table { border-collapse: collapse; margin-top: 8px; font-size: 13px; }
+td { padding: 3px 12px 3px 0; border-bottom: 1px solid var(--border); }
+
+/* Entity highlights — the placeholder label is CSS-only so text offsets stay correct */
+mark.ent {
+  color: inherit;
+  border-radius: 4px;
+  padding: 1px 2px;
+  cursor: pointer;
+}
+mark.ent::after {
+  content: attr(data-ph);
+  font-size: 10px;
+  margin-left: 3px;
+  opacity: 0.7;
+  vertical-align: super;
+}
+mark.ent:hover { text-decoration: line-through; }
+
+.ent-PERSON { background: var(--e-person); }
+.ent-ORG { background: var(--e-org); }
+.ent-LOCATION, .ent-POSTCODE { background: var(--e-location); }
+.ent-UNIVERSITY { background: var(--e-uni); }
+.ent-COURSE_CODE { background: var(--e-course); }
+.ent-STUDENT_ID, .ent-NI_NUMBER { background: var(--e-id); }
+.ent-DATE { background: var(--e-date); }
+.ent-EMAIL, .ent-PHONE { background: var(--e-contact); }
+.ent-CUSTOM { background: var(--e-custom); }
